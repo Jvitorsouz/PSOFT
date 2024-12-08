@@ -1,11 +1,14 @@
 package Pagamentos;
 
-public class dinheiro implements Pagamento {
+public class dinheiro extends PagamentoAbstract{
 
-    private double preco;
+    public dinheiro(double total){
+        super(total);
+    }
 
-    public void pagar(double preco){
-        this.preco = preco;
+    @Override
+    public String pagar() {
+        return "Pagamento de R$ " + super.getTotal() + " realizado em Dinheiro.";
     }
     
 }

@@ -31,18 +31,18 @@ public class Venda {
         return total;
     }
 
-    public void pagamentoDinheiro(){
-        this.pagamento = new dinheiro();
-        this.pagamento.pagar(total());
+    public String pagamentoDinheiro(){
+        this.pagamento = new dinheiro(total());
+        return this.pagamento.pagar();
     }
 
-    public void pagamentoPix(){
-        this.pagamento = new pix();
-        this.pagamento.pagar(total());
+    public String pagamentoPix(){
+        this.pagamento = new pix(total());
+        return this.pagamento.pagar();
     }
 
-    public void pagamentoCartao(){
-        this.pagamento = new cartao();
-        this.pagamento.pagar(total());
+    public String pagamentoCartao(int qtdVezes){
+        this.pagamento = new cartao(total(), qtdVezes);
+        return this.pagamento.pagar();
     }
 }

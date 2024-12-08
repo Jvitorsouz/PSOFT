@@ -1,0 +1,86 @@
+Mercado
+aggregates Venda
+---
+- historico: HashMap<Integer, Venda>
+- qtdVenda: int
+---
++ Mercado()
++ criaVenda(): int
++ addProduto(p: Produto): void
+---
+
+Venda
+composes Pagamento <Interface>
+aggregates ItemVenda
+---
+- itens: ArrayList<ItemVenda>
+- pagamento: Pagamento
+---
++ Venda()
++ addProduto(p: Produto, qtd: int): void
++ total(): double
++ pagamentoDinheiro(): void
++ pagamentoPix(): void
++ pagamentoCartao(): void
+---
+
+ItemVenda
+association Produto
+---
+- p: Produto
+- qtd: int
+---
++ ItemVenda(p: Produto, qtd: int)
++ subtotal(): double
+---
+
+Produto
+---
+- desc: str
+- double: preco
+---
++ Produto(desc: str, preco: double)
+---
+
+
+Pagamento <Interface>
+---
+---
++ pagar(): str
+---
+
+PagamentoAbstract <Abstract>
+implements Pagamento <Interface>
+---
+- total: double
+---
++ PagamentoAbstract(total: double)
++ pagar(): str
+---
+
+Pix
+extends PagamentoAbstract <Abstract>
+---
+---
++ Pix(preco: double)
++ pagar(): str
+---
+
+
+Cartao
+extends PagamentoAbstract <Abstract>
+---
+---
++ Cartao(total: double, vezes: int)
++ pagar(): str
+---
+
+
+
+Dinheiro
+extends PagamentoAbstract <Abstract>
+---
+---
++ Dinheiro(total: double)
++ pagar(): str
+---
