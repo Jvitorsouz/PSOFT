@@ -1,12 +1,17 @@
 package Pagamentos;
 
-public class cartao  implements Pagamento{
+public class cartao  extends PagamentoAbstract{
 
-    private double preco;
+    private int vezes;
+
+    public cartao(double total, int vezes){
+        super(total);
+        this.vezes = vezes;
+    }
 
     @Override
-    public void pagar(double preco) {
-        this.preco = preco;
+    public String pagar() {
+        return "Pagamento de R$ " + super.getTotal() + " em " + this.vezes + "Vezes realizado via Cartao.";
     }
-    
+
 }

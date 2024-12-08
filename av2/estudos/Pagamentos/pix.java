@@ -1,11 +1,15 @@
 package Pagamentos;
 
-public class pix implements Pagamento {
+public class pix extends PagamentoAbstract {
 
-    private double preco;
-
-    public void pagar(double preco){
-        this.preco = preco;
+    public pix(double total){
+        super(total);
     }
+
+    @Override
+    public String pagar() {
+        return "Pagamento de R$ " + super.getTotal() + " realizado via Pix.";
+    }
+
     
 }
