@@ -1,12 +1,12 @@
 package com.example;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+
 
 /**
  * Unit test for simple App.
@@ -24,6 +24,7 @@ public class AppTest
      void setUp(){
         this.biblioteca= new Biblioteca();
         this.livros = new ArrayList<>();
+        
         this.biblioteca.cadastrarLivro("Livro1", true);
         this.biblioteca.cadastrarLivro("Livro2", false);
         this.biblioteca.cadastrarLivro("Livro2 Outro", true);
@@ -49,7 +50,7 @@ public class AppTest
      @Test
      void listarLivroNaoExistenteTest(){
         IllegalArgumentException mensage = assertThrows(IllegalArgumentException.class, () -> {this.biblioteca.listarLivro("INEXISTE");});
-        assertEquals(mensage, "TITULO INEXISTENTE");
+        assertEquals(mensage.getMessage(), "TITULO INEXISTENTE");
      }
 
      @Test
@@ -83,29 +84,31 @@ public class AppTest
 
      @Test
      void reservarLivro(){
-        assertEquals(this.biblioteca.reservarLivro("1", "fulano@example.com"), "LIVRO RESERVADO");
+        
+        assertEquals(this.biblioteca.reservarLivro(1, "fulano@example.com"), "LIVRO RESERVADO");
 
-        assertEquals(this.biblioteca.reservarLivro("3", "fulano@example.com"), "LIVRO RESERVADO");
+        assertEquals(this.biblioteca.reservarLivro(3, "fulano@example.com"), "LIVRO RESERVADO");
 
-        assertEquals(this.biblioteca.reservarLivro("4", "sicrano@example.com"), "LIVRO RESERVADO");
+        assertEquals(this.biblioteca.reservarLivro(4, "sicrano@example.com"), "LIVRO RESERVADO");
      }
 
      @Test
      void reservarLivroIdInexistente(){
-        IllegalArgumentException mensage = assertThrows(IllegalArgumentException.class, () -> {this.biblioteca.reservarLivro("-1", "fulano@example.com");});
-        assertEquals(mensage, "LIVRO INEXISTENTE");
+        IllegalArgumentException mensage = assertThrows(IllegalArgumentException.class, () -> {this.biblioteca.reservarLivro(0, "fulano@example.com");});
+        assertEquals(mensage.getMessage(), "LIVRO INEXISTENTE");
      }
 
+      
      @Test
      void reservarLivroUserInexistente(){
-        IllegalArgumentException mensage = assertThrows(IllegalArgumentException.class, () -> {this.biblioteca.reservarLivro("1", "beltrano@example.com");});
-        assertEquals(mensage, "USUARIO INEXISTENTE");
+        IllegalArgumentException mensage = assertThrows(IllegalArgumentException.class, () -> {this.biblioteca.reservarLivro(1, "beltrano@example.com");});
+        assertEquals(mensage.getMessage(), "USUARIO INEXISTENTE");
     }
 
      @Test
      void reservarLivroIndisponivel(){
-        IllegalArgumentException mensage = assertThrows(IllegalArgumentException.class, () -> {this.biblioteca.reservarLivro("2", "fulano@example.com");});
-        assertEquals(mensage, "LIVRO INDISPONIVEL");
+        IllegalArgumentException mensage = assertThrows(IllegalArgumentException.class, () -> {this.biblioteca.reservarLivro(2, "fulano@example.com");});
+        assertEquals(mensage.getMessage(), "LIVRO INDISPONIVEL");
      }
 
 
