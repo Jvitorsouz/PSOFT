@@ -1,0 +1,46 @@
+Cliente
+aggregates Ordenador<Interface>
+---
+- ordenador: Ordenador<Interface>
+---
++ ordena(elementos: List<Integer>): List<Integer>
++ setOrdenadorBubbleSort(): void
++ setOrdenadorMergeSort(): void
++ setOrdenadorQuickSort(): void
++ setOrdenadorInsertionSort(): void
+---
+
+Ordenador<Interface>
+---
+---
++ ordenar(elementos: List<Integer>): List<Integer>
+---
+
+
+BubbleSort
+implements Ordenador<Interface>
+---
+---
++ ordenar(elementos: List<Integer>): List<Integer>
+---
+
+MergeSort
+implements Ordenador<Interface>
+---
+---
++ ordenar(elementos: List<Integer>): List<Integer>
+---
+
+QuickSort
+implements Ordenador<Interface>
+---
+---
++ ordenar(elementos: List<Integer>): List<Integer>
+---
+
+InsertionSort
+implements Ordenador<Interface>
+---
+---
++ ordenar(elementos: List<Integer>): List<Integer>
+---
